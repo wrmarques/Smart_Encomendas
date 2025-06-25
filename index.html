@@ -38,6 +38,10 @@
         Sistema de Entrega Automática | Condomínio Orion © 2025
     </div>
     <script>
+        
+        // Registrar horário de acesso ao carregar a página
+        localStorage.setItem('qrAccessTime', Date.now());
+        
         // Configuração das casas
         const housesConfig = [
             { id: 1, name: "Casa 1", enabled: true },
