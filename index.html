@@ -39,8 +39,33 @@
     </div>
     <script>
         
-        // Registrar horário de acesso ao carregar a página
-        localStorage.setItem('qrAccessTime', Date.now());
+       // Função para obter parâmetros da URL
+        function getQueryParams() {
+            const params = {};
+            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,key,value) {
+                params[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+            });
+            return params;
+        }
+
+        // Função para gerar token aleatório
+        function generateToken(length) {
+            var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            var token = '';
+            for (var i = 0; i < length; i++) {
+                token += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return token;
+        }
+
+        // Gera token e salva horário SOMENTE se vier do QR code (from=qr)
+        const params = getQueryParams();
+        let token = localStorage.getItem('qrToken');
+        if (params.from === 'qr') {
+            token = generateToken(16);
+            localStorage.setItem('qrToken', token);
+            localStorage.setItem('qrAccessTime', Date.now());
+        }
         
         // Configuração das casas
         const housesConfig = [
