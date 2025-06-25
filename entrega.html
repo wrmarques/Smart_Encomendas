@@ -62,7 +62,7 @@
         // Proteção por tempo de acesso (5 minutos)
         const accessTime = localStorage.getItem('qrAccessTime');
         const currentTime = Date.now();
-        const FIVE_MINUTES = 5 * 60 * 1000; // 5 minutos em ms
+        const FIVE_MINUTES = 2 * 60 * 1000; // 2 minutos em ms
 
         // Preenche as informações da casa
         const params = getQueryParams();
@@ -76,7 +76,7 @@
             document.getElementById('deliveryInfo').innerHTML = `
                 <div style="color: #d32f2f; text-align: center; padding: 20px;">
                     <h3>Acesso Expirado!</h3>
-                    <p>Este link expirou após 5 minutos. Escaneie o QR code novamente para acessar o sistema.</p>
+                    <p>Este link expirou após 2 minutos. Escaneie o QR code novamente para acessar o sistema.</p>
                 </div>
             `;
             document.getElementById('openBoxBtn').style.display = 'none';
