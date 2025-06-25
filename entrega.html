@@ -69,13 +69,20 @@
                     closeWindowAfterDelay(2000); // Fecha após 2 segundos
                 } else {
                     alert('Erro ao acionar a caixa. Tente novamente.');
-                    closeWindowAfterDelay(2000); // Fecha após 2 segundos
-                }
+                if (window.opener) {
+                    window.close(); // Fecha se foi aberta por window.open
+                } else {
+                window.location.href = 'index.html'; // Redireciona se está na mesma aba
+               }
             })
             .catch(error => {
                 console.error('Erro:', error);
                 alert('Falha na comunicação com o sistema.');
-                closeWindowAfterDelay(3000); // Fecha após 3 segundos
+                if (window.opener) {
+                    window.close(); // Fecha se foi aberta por window.open
+                } else {
+                window.location.href = 'index.html'; // Redireciona se está na mesma aba
+                }
             });
         };
     </script>
